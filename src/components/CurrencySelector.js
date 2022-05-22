@@ -1,26 +1,21 @@
 import currencies from '../data/supported-currencies.json'
 import React, { useState } from 'react'
+import { SelectHeading, SelectContainer } from './StyledComponents'
 
 
-const CurrencySelector = () => {
+const CurrencySelector = ({currency, handleCurrency}) => {
 
-    //define the state using hooks = constructor for class
-    const initialCurrency = "AUD"
-    const [currency, setCurrency] = useState(initialCurrency)
 
-    const handleCurrency = (value) => {
-        setCurrency(value)
-    }
 
     return(
-        <div>
-            <span>Pick your country: </span>
-            <select value={currency} onChange={(e) => {handleCurrency(e.target.value)}}>
+        <SelectContainer>
+            <SelectHeading>Pick your country: </SelectHeading>
+            <select value={currency} onChange={(e)=>{handleCurrency(e.target.value)}}>
                 {currencies.map((obj) =>
-                    <option key={obj.currency} value={obj.currency}>{obj.country} (${obj.currency})</option>
+                    <option key={obj.currency} value={obj.currency}>{obj.country}</option>
                 )}
             </select>
-        </div>
+        </SelectContainer>
     )
 }
 
